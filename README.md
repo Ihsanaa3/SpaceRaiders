@@ -56,13 +56,38 @@ This project uses:
 - Project-specific headers such as `mesh.h`, `extraFunctions.h`, `meshDrawTools.h`, and `relativeResPath.h`
 - For networking experiments, Python and socket-based communication may also be used
 
+Note: The project-specific include headers referenced above are maintained in a separate repository: `Ihsanaa3/celestial-simulation` (see below). You can either clone that repository into an `includes/` directory within this repo or add it as a git submodule. See the "Includes" section for details.
+
+## Includes
+
+These project-specific headers are stored in a separate repository to keep shared code organized.
+
+Options to obtain the headers:
+
+1) Add as a git submodule (recommended):
+
+   git submodule add https://github.com/Ihsanaa3/celestial-simulation.git includes
+   git submodule update --init --recursive
+
+   This will create an `includes/` directory in this repository that points to the other repository. Adjust your compiler include paths to reference `includes/` (for example, `-Iincludes`).
+
+2) Clone or copy the files manually into an `includes/` directory:
+
+   git clone https://github.com/Ihsanaa3/celestial-simulation.git includes
+
+   Or copy the relevant headers from your other workspace into an `includes/` directory here.
+
+3) If you prefer not to use a submodule, keep the include path pointing to a central location on your machine and ensure your build system knows where to find those headers.
+
 ## Running the Game
 
 1. Open the project in your preferred C++ IDE or build environment.
 2. Ensure the required libraries and include paths are configured.
-3. Compile and run either `SpaceRaiders/SpaceRaiders.cpp` or `SpaceRaiders/SpaceRaiders2.cpp`.
-4. If using the improved version, the high score is saved to a file in the resources folder.
-5. For the networking examples, run the relevant Python and C++ server/client files in a compatible local setup.
+3. If you used the submodule option above, add `-Iincludes` to your compiler include paths (or configure it in your IDE).
+4. Compile and run either `SpaceRaiders/SpaceRaiders.cpp` or `SpaceRaiders/SpaceRaiders2.cpp`.
+5. If using the improved version, the high score is saved to a file in the resources folder.
+6. For the networking examples, run the relevant Python and C++ server/client files in a compatible local setup.
+
 
 ## Notes
 
