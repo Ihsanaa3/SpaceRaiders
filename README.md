@@ -1,22 +1,41 @@
-# Dodge Ball 2D
+# Dodge Ball 2D / SpaceRaiders
 
-A simple 2D arcade game built in C++ using OpenGL and GLFW. The player controls a blue ball and must avoid incoming red balls that fall from the top of the screen. The longer you survive, the higher your score climbs.
+This repository contains a small arcade-style dodge game built in C++ with OpenGL and GLFW, along with several networking experiments and alternate client/server variants built as part of the same learning project.
+
+The core game is a simple survival challenge: the player moves a blue ball around the screen while red balls fall in from above. The goal is to avoid collisions as long as possible, track score over time, and beat the saved high score.
 
 ## Gameplay
 
-- Move the player with the arrow keys or WASD.
-- Avoid colliding with the falling objects.
-- Survive as long as possible.
-- Press Enter to restart after a game over.
-- The game tracks the score and keeps a high score in a file.
+- Move the player with the arrow keys or WASD
+- Avoid incoming falling objects
+- Survive for as long as possible
+- Restart after a game over by pressing Enter
+- Score increases over time
+- High score is saved to a file
 
 ## Features
 
 - Smooth player movement with keyboard input
-- Randomized falling object spawn positions and speeds
-- Score counting over time
-- High-score saving using a text file
-- Restart support after losing
+- Randomized enemy spawn positions and fall speeds
+- Score and survival tracking
+- Persistent high-score saving
+- Restart support after a loss
+- Multiple game variants and networking experiments in the same repository
+
+## Repository Structure
+
+- `SpaceRaiders/SpaceRaiders.cpp` — original OpenGL game implementation
+- `SpaceRaiders/SpaceRaiders2.cpp` — improved version with score handling and high-score persistence
+- `SpaceRaiders/SpaceRaidersClient1.cpp` — client-side variant
+- `SpaceRaiders/SpaceRaidersClient2.cpp` — additional client-side variant
+- `SpaceRaiders/SpaceRaidersClient3.cpp` — another client variant
+- `SpaceRaiders/SpaceRaidersThreadedClient4.cpp` — threaded client experiment
+- `SpaceRaiders/server.cpp` — C++ UDP server/client communication example
+- `SpaceRaiders/client.py` — Python client for networking tests
+- `SpaceRaiders/spaceServer1.py` — early Python UDP server implementation
+- `SpaceRaiders/spaceServer2.py` — expanded Python server version
+- `SpaceRaiders/spaceServer3.py` — more advanced server prototype
+- `README.md` — project overview
 
 ## Controls
 
@@ -26,32 +45,28 @@ A simple 2D arcade game built in C++ using OpenGL and GLFW. The player controls 
 - Right: D / Right Arrow
 - Restart: Enter
 
-## Project Files
-
-- `SpaceRaiders.cpp` — original version of the game
-- `SpaceRaiders2.cpp` — improved version with score handling and high score persistence
-- `README.md` — project overview
-
 ## Requirements
 
-This project depends on:
+This project uses:
 
 - C++ compiler
 - OpenGL
 - GLFW
 - GLM
 - Project-specific headers such as `mesh.h`, `extraFunctions.h`, `meshDrawTools.h`, and `relativeResPath.h`
+- For networking experiments, Python and socket-based communication may also be used
 
 ## Running the Game
 
 1. Open the project in your preferred C++ IDE or build environment.
-2. Make sure all required libraries and headers are available.
-3. Compile and run either `SpaceRaiders.cpp` or `SpaceRaiders2.cpp`.
-4. If you are using the improved version, the high score will be saved to a file in the resources folder.
+2. Ensure the required libraries and include paths are configured.
+3. Compile and run either `SpaceRaiders/SpaceRaiders.cpp` or `SpaceRaiders/SpaceRaiders2.cpp`.
+4. If using the improved version, the high score is saved to a file in the resources folder.
+5. For the networking examples, run the relevant Python and C++ server/client files in a compatible local setup.
 
 ## Notes
 
-This repository contains the game source code and does not include a prebuilt executable or full project setup files. You may need to configure the include paths and library linking for your development environment.
+This repository is a learning/demo project and contains both the game source and a set of experimental networking and client/server files. It does not include a prebuilt executable or a complete cross-platform project setup, so you may need to configure include paths, library links, and runtime settings for your development environment.
 
 ## License
 
