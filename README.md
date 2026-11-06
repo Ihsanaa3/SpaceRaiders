@@ -1,97 +1,81 @@
 # Dodge Ball 2D / SpaceRaiders
 
-This repository contains a small arcade-style dodge game built in C++ with OpenGL and GLFW, along with several networking experiments and alternate client/server variants built as part of the same learning project.
+SpaceRaiders is a small arcade-style dodge game written in C++ with OpenGL and GLFW. The repository also includes alternate game clients and networking experiments developed alongside the main game.
 
-The core game is a simple survival challenge: the player moves a blue ball around the screen while red balls fall in from above. The goal is to avoid collisions as long as possible, track score over time, and beat the saved high score.
+In the game, you control a blue ball and dodge red balls falling from above. Avoid collisions for as long as possible to increase your score.
 
 ## Gameplay
 
-- Move the player with the arrow keys or WASD
-- Avoid incoming falling objects
-- Survive for as long as possible
-- Restart after a game over by pressing Enter
-- Score increases over time
-- High score is saved to a file
-
-## Features
-
-- Smooth player movement with keyboard input
-- Randomized enemy spawn positions and fall speeds
-- Score and survival tracking
-- Persistent high-score saving
-- Restart support after a loss
-- Multiple game variants and networking experiments in the same repository
-
-## Repository Structure
-
-- `SpaceRaiders/SpaceRaiders.cpp` — original OpenGL game implementation
-- `SpaceRaiders/SpaceRaiders2.cpp` — improved version with score handling and high-score persistence
-- `SpaceRaiders/SpaceRaidersClient1.cpp` — client-side variant
-- `SpaceRaiders/SpaceRaidersClient2.cpp` — additional client-side variant
-- `SpaceRaiders/SpaceRaidersClient3.cpp` — another client variant
-- `SpaceRaiders/SpaceRaidersThreadedClient4.cpp` — threaded client experiment
-- `SpaceRaiders/server.cpp` — C++ UDP server/client communication example
-- `SpaceRaiders/client.py` — Python client for networking tests
-- `SpaceRaiders/spaceServer1.py` — early Python UDP server implementation
-- `SpaceRaiders/spaceServer2.py` — expanded Python server version
-- `SpaceRaiders/spaceServer3.py` — more advanced server prototype
-- `README.md` — project overview
+- Move with the arrow keys or WASD.
+- Dodge the falling obstacles.
+- Survive as long as possible to build your score.
+- After a game over, press **Enter** to restart.
+- The improved game version saves a high score to a file.
 
 ## Controls
 
-- Up: W / Up Arrow
-- Down: S / Down Arrow
-- Left: A / Left Arrow
-- Right: D / Right Arrow
-- Restart: Enter
+| Action | Keys |
+| --- | --- |
+| Move up | W / Up Arrow |
+| Move down | S / Down Arrow |
+| Move left | A / Left Arrow |
+| Move right | D / Right Arrow |
+| Restart after game over | Enter |
+
+## Features
+
+- Keyboard-controlled player movement
+- Randomized enemy spawn positions and fall speeds
+- Score and survival-time tracking
+- Persistent high-score saving in the improved version
+- Several game variants and networking experiments
+
+## Repository Structure
+
+- `SpaceRaiders/SpaceRaiders.cpp` — original OpenGL game
+- `SpaceRaiders/SpaceRaiders2.cpp` — version with score handling and high-score persistence
+- `SpaceRaiders/SpaceRaidersClient1.cpp` — client-side game variant
+- `SpaceRaiders/SpaceRaidersClient2.cpp` — additional client-side variant
+- `SpaceRaiders/SpaceRaidersClient3.cpp` — another client variant
+- `SpaceRaiders/SpaceRaidersThreadedClient4.cpp` — threaded client experiment
+- `SpaceRaiders/server.cpp` — C++ UDP networking example
+- `SpaceRaiders/client.py` — Python networking-test client
+- `SpaceRaiders/spaceServer1.py` — early Python UDP server
+- `SpaceRaiders/spaceServer2.py` — expanded Python server
+- `SpaceRaiders/spaceServer3.py` — advanced server prototype
 
 ## Requirements
 
-This project uses:
+The game requires:
 
-- C++ compiler
+- A C++ compiler
 - OpenGL
 - GLFW
 - GLM
-- Project-specific headers such as `mesh.h`, `extraFunctions.h`, `meshDrawTools.h`, and `relativeResPath.h`
-- For networking experiments, Python and socket-based communication may also be used
+- The project-specific headers, including `mesh.h`, `extraFunctions.h`, `meshDrawTools.h`, and `relativeResPath.h`
 
-Note: The project-specific include headers referenced above are maintained in a separate repository: `Ihsanaa3/celestial-simulation` (see below). You can either clone that repository into an `includes/` directory within this repo or add it as a git submodule. See the "Includes" section for details.
+Python may also be needed to run the networking experiments.
 
-## Includes
+### Shared headers and resources
 
-These project-specific headers are stored in a separate repository to keep shared code organized.
+Some project-specific headers are maintained in the separate [`Ihsanaa3/celestial-simulation`](https://github.com/Ihsanaa3/celestial-simulation) repository. To obtain them as a submodule, run these commands from the SpaceRaiders repository root:
 
-Options to obtain the headers:
+```bash
+git submodule add https://github.com/Ihsanaa3/celestial-simulation.git includes
+git submodule update --init --recursive
+```
 
-1) Add as a git submodule (recommended):
-
-   git submodule add https://github.com/Ihsanaa3/celestial-simulation.git includes
-   git submodule update --init --recursive
-
-   This will create an `includes/` directory in this repository that points to the other repository. Adjust your compiler include paths to reference `includes/` (for example, `-Iincludes`).
-
-2) Clone or copy the files manually into an `includes/` directory:
-
-   git clone https://github.com/Ihsanaa3/celestial-simulation.git includes
-
-   Or copy the relevant headers from your other workspace into an `includes/` directory here.
-
-3) If you prefer not to use a submodule, keep the include path pointing to a central location on your machine and ensure your build system knows where to find those headers.
+Then configure your compiler or IDE to include the `includes/` directory (for example, with `-Iincludes`). Alternatively, clone or copy the required files into `includes/`, or configure your build to use an existing local copy.
 
 ## Running the Game
 
-1. Open the project in your preferred C++ IDE or build environment.
-2. Ensure the required libraries and include paths are configured.
-3. If you used the submodule option above, add `-Iincludes` to your compiler include paths (or configure it in your IDE).
-4. Compile and run either `SpaceRaiders/SpaceRaiders.cpp` or `SpaceRaiders/SpaceRaiders2.cpp`.
-5. If using the improved version, the high score is saved to a file in the resources folder.
-6. For the networking examples, run the relevant Python and C++ server/client files in a compatible local setup.
+1. Open the project in your C++ IDE or build environment.
+2. Install or configure the required libraries and shared headers.
+3. Set the include paths and any resource paths required by your environment.
+4. Build and run `SpaceRaiders/SpaceRaiders.cpp` or `SpaceRaiders/SpaceRaiders2.cpp`.
+5. To try the networking experiments, run the relevant server and client programs in a compatible local setup.
 
-
-## Notes
-
-This repository is a learning/demo project and contains both the game source and a set of experimental networking and client/server files. It does not include a prebuilt executable or a complete cross-platform project setup, so you may need to configure include paths, library links, and runtime settings for your development environment.
+The repository does not provide a prebuilt executable or a complete, cross-platform build configuration, so the exact build steps depend on your environment.
 
 ## License
 
