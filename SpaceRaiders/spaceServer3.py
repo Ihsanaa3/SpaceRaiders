@@ -27,9 +27,8 @@ packetDtype = np.dtype([
 print("NumPy packet size:", packetDtype.itemsize)
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-
 try:
-    sock.ioctl(socket.SIO_UDP_CONNRESET, False)
+    sock.ioctl(socket.SIO_UDP_CONNRESET, False)  # type: ignore
 except (AttributeError, OSError):
     pass
 
@@ -44,12 +43,11 @@ playerSpeed = 0.9
 
 playerServerPosition = np.array([0.0, 0.0], dtype=np.float32) 
 allServerPositions = np.zeros((expectedEntitySize, 2), dtype=np.float32) 
+allServerVelocities = np.zeros((expectedEntitySize, 2), dtype=np.float32)
+
 for i in range(expectedEntitySize):
     allServerPositions[i, 0] = np.random.uniform(-1.0, 1.0) 
     allServerPositions[i, 1] = 1.0 
-
-
-allServerVelocities = np.zeros((expectedEntitySize, 2), dtype=np.float32)
 
 while True:
     # loop_start_time = time.perf_counter()
@@ -138,7 +136,8 @@ while True:
             allServerPositions[i, 0] = np.random.uniform(-1.0, 1.0)
         
         # Check collision with player
-        dist_sq = glmdistance2(playerServerPosition[0], allServerPositions[i, 0], playerServerPosition[1], allServerPositions[i, 1])
+        dist_sq = glmdistance2(playerServerPosition[0], allServerPositions[i, 0], 
+                               playerServerPosition[1], allServerPositions[i, 1])
         
         if dist_sq < pow(allRadius[i] + playerRadius, 2): 
             allServerVelocities[:, 1] = 0.0 
